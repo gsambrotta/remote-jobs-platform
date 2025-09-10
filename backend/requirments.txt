@@ -1,0 +1,6 @@
+Flask;
+openai;
+supabase;
+feedparser;
+psycopg2-binary
+python-dotenv
