@@ -3,6 +3,8 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 from dotenv import load_dotenv
 from flask import Flask, jsonify
+from flask_cors import CORS
+from helpers.api_response import api_response
 
 load_dotenv()
 USER = os.getenv("user")
@@ -23,7 +25,12 @@ def get_connection():
 
 
 app = Flask(__name__)
+ENV = os.getenv("FLASK_ENV", "development")
 
+if ENV == "development":
+    CORS(app)
+else:
+    CORS(app, resources={r"/*": {"origins": "https://frontend.com"}})
 
 @app.route('/')
 def home():
@@ -36,11 +43,11 @@ def get_jobs():
         cursor = conn.cursor(cursor_factory=RealDictCursor)
         cursor.execute("SELECT * FROM jobs;")
         result = cursor.fetchall()
-        json = jsonify(result)
+        # json = jsonify(result)
 
         cursor.close()
         conn.close()
-        return json
+        return api_response(result, "Jobs fetched successfully")
     except Exception as e:\
         return {"error": str(e)}
 
@@ -55,13 +62,13 @@ def get_job(id):
         conn.close()
 
         if result: 
-            return jsonify(result)
+            return api_response(result, "Job fetched successfully")
         else:
-            return jsonify({"message": "Job not found"})
+            return api_response(None, "Job not found", success=False, status=404)   
     
     except Exception as e:
         return {"error": str(e)}
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=(ENV=="development"))

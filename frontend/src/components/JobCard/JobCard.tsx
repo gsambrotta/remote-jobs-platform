@@ -1,74 +1,71 @@
 import { memo, useState } from "react";
-import type { JobCardProps } from "../../types/index";
-import { formatDate, formatSalary } from "@utils/helpers";
-import styles from "./JobCard.module.css";
+import type { Job } from "../../types/jobs.types";
 
-const JobCard = memo(
-  ({ job, onBookmark, className }: JobCardProps): JSX.Element => {
-    const [isBookmarked, setIsBookmarked] = useState(job.isBookmarked || false);
+type JobCardProps = {
+  job: Job;
+  onBookmark?: (id: string) => void;
+};
 
-    const handleBookmark = () => {
-      setIsBookmarked(!isBookmarked);
-      onBookmark?.(job.id);
-    };
+const JobCard = memo(({ job, onBookmark }: JobCardProps) => {
+  const [isBookmarked, setIsBookmarked] = useState(job.isBookmarked || false);
 
-    return (
-      <article className={`${styles.jobCard} ${className || ""}`}>
-        <div className={styles.jobHeader}>
-          <h3 className={styles.jobTitle}>{job.title}</h3>
-          <button
-            className={styles.bookmarkBtn}
-            onClick={handleBookmark}
-            aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
+  const handleBookmark = () => {
+    setIsBookmarked(!isBookmarked);
+    onBookmark?.(job.id);
+  };
+
+  return (
+    <article className="bg-white border border-riverBedGreen rounded-lg p-6 shadow-black06 hover:shadow-primary transition">
+      {/* Header */}
+      <div className="flex justify-between items-start mb-3">
+        <h3 className="text-xl font-semibold">{job.title}</h3>
+        <button
+          onClick={handleBookmark}
+          aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
+          className="text-acidGreen text-2xl"
+        >
+          {isBookmarked ? "★" : "☆"}
+        </button>
+      </div>
+
+      {/* Company / Short summary */}
+      <div className="text-paragraph mb-3">
+        {job.short_summary || job.company}
+      </div>
+
+      {/* Meta info */}
+      <div className="flex flex-wrap gap-2 text-sm text-darkGreyBlue mb-3">
+        <span>{job.remote ? "Remote" : "On-site"}</span>
+        <span>{job.visa_required ? "Visa Required" : "No Visa"}</span>
+        <span>{new Date(job.date_fetched).toLocaleDateString()}</span>
+      </div>
+
+      {/* Skills tags */}
+      <div className="flex flex-wrap gap-2 mb-4">
+        {job.skills_required?.map((skill) => (
+          <span
+            key={skill}
+            className="bg-mintGreen/20 text-mintGreen text-xs font-medium px-2 py-1 rounded-full"
           >
-            {isBookmarked ? "★" : "☆"}
-          </button>
-        </div>
-
-        <div className={styles.jobCompany}>{job.company}</div>
-
-        <div className={styles.jobMeta}>
-          <span className={styles.jobLocation}>{job.location}</span>
-          <span className={styles.jobType}>{job.jobType}</span>
-          <span className={styles.jobLevel}>{job.experienceLevel}</span>
-        </div>
-
-        {job.salary && (
-          <div className={styles.jobSalary}>{formatSalary(job.salary)}</div>
-        )}
-
-        <p className={styles.jobDescription}>
-          {job.description.length > 150
-            ? `${job.description.substring(0, 150)}...`
-            : job.description}
-        </p>
-
-        <div className={styles.jobTags}>
-          {job.tags.slice(0, 3).map((tag) => (
-            <span key={tag} className={styles.tag}>
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className={styles.jobFooter}>
-          <span className={styles.postedDate}>
-            {formatDate(job.postedDate)}
+            {skill}
           </span>
-          <a
-            href={job.applicationUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.applyBtn}
-          >
-            Apply Now →
-          </a>
-        </div>
-      </article>
-    );
-  }
-);
+        ))}
+      </div>
+
+      {/* Apply button */}
+      <div className="flex justify-end">
+        <a
+          href={job.source_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-acidGreen text-white px-4 py-2 rounded hover:bg-mintGreen transition"
+        >
+          Apply Now →
+        </a>
+      </div>
+    </article>
+  );
+});
 
 JobCard.displayName = "JobCard";
-
 export default JobCard;

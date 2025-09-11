@@ -1,7 +1,7 @@
 import type { ApiResponse, SearchParams } from '../types/api.types';
 import type { Job, FilterOptions } from '../types/jobs.types';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 class ApiError extends Error {
   constructor(message: string, public status?: number) {
@@ -38,25 +38,26 @@ export const fetchJobs = async (params: SearchParams): Promise<Job[]> => {
       'Content-Type': 'application/json',
     },
   });
+
   return handleResponse<Job[]>(response);
 };
 
-export const fetchFilterOptions = async (): Promise<FilterOptions> => {
-  const response = await fetch(buildUrl('/jobs/filters'), {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  return handleResponse<FilterOptions>(response);
-};
+// export const fetchFilterOptions = async (): Promise<FilterOptions> => {
+//   const response = await fetch(buildUrl('/jobs/filters'), {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
+//   return handleResponse<FilterOptions>(response);
+// };
 
-export const fetchJobById = async (id: string): Promise<Job> => {
-  const response = await fetch(buildUrl(`/jobs/${id}`), {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  return handleResponse<Job>(response);
-};
+// export const fetchJobById = async (id: string): Promise<Job> => {
+//   const response = await fetch(buildUrl(`/jobs/${id}`), {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
+//   return handleResponse<Job>(response);
+// };

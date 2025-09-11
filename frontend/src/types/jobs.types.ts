@@ -1,21 +1,15 @@
 export interface Job {
   id: string;
   title: string;
-  company: string;
-  description: string;
-  location: string;
-  salary?: {
-    min?: number;
-    max?: number;
-    currency: string;
-  };
-  category: JobCategory;
-  experienceLevel: ExperienceLevel;
-  jobType: JobType;
-  postedDate: string;
-  applicationUrl: string;
-  tags: string[];
-  region: Region;
+  company: string;           
+  short_summary?: string;     
+  description?: string;       
+  location?: string;          
+  remote: boolean;            
+  visa_required: boolean;     
+  date_fetched: string;       
+  source_url: string;         
+  skills_required?: string[];
   isBookmarked?: boolean;
 }
 

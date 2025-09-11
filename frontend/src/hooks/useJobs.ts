@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useDebounce } from './useDebounce';
 import { fetchJobs } from '@services/api';
-import type { Job, Filters } from '@types/job.types';
+import type { Job, Filters } from '@types/jobs.types';
 
 interface UseJobsReturn {
   jobs: Job[];
@@ -16,28 +16,25 @@ export const useJobs = (searchQuery: string, filters: Filters): UseJobsReturn =>
   const [error, setError] = useState<string | null>(null);
 
   const debouncedSearch = useDebounce(searchQuery, 300);
+    // Wrap filters in useMemo to avoid new object reference each render
+  const stableFilters = JSON.stringify(filters);
 
-  const fetchData = async (): Promise<void> => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
-
     try {
-      const data = await fetchJobs({
-        search: debouncedSearch,
-        ...filters
-      });
+      const data = await fetchJobs({ search: debouncedSearch, ...filters });
       setJobs(data);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
-      setError(errorMessage);
+    } catch (err: any) {
+      setError(err.message);
     } finally {
       setLoading(false);
     }
-  };
+  }, [debouncedSearch, stableFilters]);
 
   useEffect(() => {
     fetchData();
-  }, [debouncedSearch, filters]);
+  }, [fetchData]);
 
   return { jobs, loading, error, refetch: fetchData };
 };
