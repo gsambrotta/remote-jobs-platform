@@ -15,14 +15,14 @@ const JobCard = memo(({ job, onBookmark }: JobCardProps) => {
   };
 
   return (
-    <article className="bg-white border border-riverBedGreen rounded-lg p-6 shadow-black06 hover:shadow-primary transition">
+    <article className="bg-white border border-riverBedGreen rounded-lg p-6 box-shadow-black06 hover:box-shadow-primary transition-transition">
       {/* Header */}
       <div className="flex justify-between items-start mb-3">
         <h3 className="text-xl font-semibold">{job.title}</h3>
         <button
           onClick={handleBookmark}
           aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
-          className="text-acidGreen text-2xl"
+          className="text-acid-green text-2xl"
         >
           {isBookmarked ? "★" : "☆"}
         </button>
@@ -30,11 +30,12 @@ const JobCard = memo(({ job, onBookmark }: JobCardProps) => {
 
       {/* Company / Short summary */}
       <div className="text-paragraph mb-3">
+        <span className="text-dark-grey-blue text-xs">Company:</span>{" "}
         {job.short_summary || job.company}
       </div>
 
       {/* Meta info */}
-      <div className="flex flex-wrap gap-2 text-sm text-darkGreyBlue mb-3">
+      <div className="flex flex-wrap gap-2 text-sm text-dark-grey-blue mb-3">
         <span>{job.remote ? "Remote" : "On-site"}</span>
         <span>{job.visa_required ? "Visa Required" : "No Visa"}</span>
         <span>{new Date(job.date_fetched).toLocaleDateString()}</span>
@@ -45,7 +46,7 @@ const JobCard = memo(({ job, onBookmark }: JobCardProps) => {
         {job.skills_required?.map((skill) => (
           <span
             key={skill}
-            className="bg-mintGreen/20 text-mintGreen text-xs font-medium px-2 py-1 rounded-full"
+            className="bg-mint-green text-white text-xs font-medium px-2 py-1 rounded-full"
           >
             {skill}
           </span>
@@ -58,9 +59,9 @@ const JobCard = memo(({ job, onBookmark }: JobCardProps) => {
           href={job.source_url}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-acidGreen text-white px-4 py-2 rounded hover:bg-mintGreen transition"
+          className="bg-dark-grey-blue text-white px-4 py-2 rounded hover:bg-mint-green transition-transition"
         >
-          Apply Now →
+          Check job offer →
         </a>
       </div>
     </article>

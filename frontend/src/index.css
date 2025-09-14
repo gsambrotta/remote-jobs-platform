@@ -1,23 +1,86 @@
 @import "tailwindcss";
 
-/* Global body style */
-/* body {
-  @apply bg-f7fafd text-blackColor font-sans;
+@theme {
+  --font-size-base: 14px;
+
+  --color-white: #ffffff;
+  --color-black-color: #0e314c;
+  --color-acid-green: #85b360;
+  --color-mint-green: #5d9f7b;
+  --color-jade-green: #487b6e;
+  --color-river-bed-green: #385c61;
+  --color-dark-grey-blue: #2a4555;
+  --color-navy-blue: #10133b;
+  --color-river-bed-green-rgba: rgb(56, 92, 97);
+  --color-navy-blue-rgba: rgba(16, 19, 59, 1);
+  --color-primary-color: --color-navy-blue;
+  --color-secondary-color: --color-mint-green;
+  --color-tertiary-color: --color-acid-green;
+  --color-paragraph-color: #6084a4;
+  --color-white-fffcff: #fffcff;
+  --color-white-fbfaff: #fbfaff;
+  --color-white-effbff: #effbff;
+  --color-white-eeeeee: #eeeeee;
+  --color-grey-b5b5b5: #b5b5b5;
+  --color-grey-a3a3a3: #a3a3a3;
+  --color-grey-9a9a9a: #9a9a9a;
+  --color-grey-909090: #909090;
+  --color-grey-878787: #878787;
+  --color-grey-7e7e7e: #7e7e7e;
+  --color-grey-5e5e5e: #5e5e5e;
+  --color-error: #610f0f;
+  --color-success: #85b360;
+
+  --background-color-color-f7fafd: #f7fafd;
+  --background-color-color-f9f6f6: #f9f6f6;
+  --background-color-color-f9fafb: #f9fafb;
+  --background-color-color-0f054b: #0f054b;
+  --background-color-color-eef6fd: #eef6fd;
+  --background-color-color-d6d6d6: #d6d6d6;
+
+  --box-shadow-primary: 0 4px 6px rgba(42, 69, 85, 0.25);
+  --box-shadow-secondary: 0 4px 6px rgba(93, 159, 123, 0.25);
+  --box-shadow-black06: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --box-shadow-black01: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  --primary-gradient: linear-gradient(135deg, #0e314c 0%, #10133b 100%);
+  --secondary-gradient: linear-gradient(135deg, #85b360 0%, #5d9f7b 100%);
+  --gradient-color: linear-gradient(135deg, #10133b 0%, #5d9f7b 100%);
+  --gradient-color2: linear-gradient(
+    to right bottom,
+    #10133b,
+    #385c61,
+    #5d9f7b,
+    #5d9f7b,
+    #85b360
+  );
+  --gradient-hero: linear-gradient(
+    0deg,
+    rgba(56, 92, 97, 0.8) 0%,
+    rgba(56, 92, 97, 0.8) 10%,
+    rgba(37, 56, 78, 1) 40%,
+    rgba(16, 19, 59, 0.8) 70%
+  );
+  --gradient1: linear-gradient(
+    0deg,
+    rgba(56, 92, 97, 0.8) 0%,
+    rgba(56, 92, 97, 0.8) 65%,
+    rgba(16, 19, 59, 0.8) 100%
+  );
+  --gradient2: linear-gradient(
+    0deg,
+    rgba(56, 92, 97, 0.8) 0%,
+    rgba(56, 92, 97, 0.8) 45%,
+    rgba(16, 19, 59, 0.8) 100%
+  );
+  --gradient3: linear-gradient(150deg, #10133b 0%, #5d9f7b 50%, #5d9f7b 100%);
+
+  /* Other */
+  --transition: 0.5s;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply text-blackColor font-semibold;
+html,
+body,
+#root {
+  height: 100%;
 }
-
-a {
-  @apply text-acidGreen hover:text-mintGreen transition;
-}
-
-button {
-  @apply transition-colors duration-500;
-} */

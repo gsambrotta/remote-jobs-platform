@@ -32,12 +32,14 @@ function App(): JSX.Element {
   // }, []);
 
   return (
-    <div className="app">
-      {/* <Header /> */}
-      <div className="bg-blue-500 text-white p-10">Hello Tailwind!</div>
+    <div className="app flex flex-col min-h-screen">
+      <header className="bg-navy-blue text-white box-shadow-primary p-6 flex justify-between items-center">
+        <h1 className="text-2xl font-bold">Pakufi Jobs</h1>
+        <button className="px-4 py-2 rounded">Post a Job</button>
+      </header>
 
-      <main className="main-content">
-        <section className="hero">
+      <main className="flex-1 bg-river-bed-green pt-12 pb-12 pl-8 pr-8 main-content">
+        <section className="text-center text-white-eeeeee text-2xl hero">
           <h1>100% Remote Jobs for Balkans & Africa</h1>
           <p>No visa required. Work from anywhere.</p>
         </section>
