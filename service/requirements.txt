@@ -1,0 +1,4 @@
+openai
+supabase
+feedparser
+python-dotenv

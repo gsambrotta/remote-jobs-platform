@@ -1,5 +1,3 @@
-import type { Job } from '../types/jobs.types';
-
 export const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
   const now = new Date();
@@ -12,27 +10,6 @@ export const formatDate = (dateString: string): string => {
   if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
   if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
   return `${Math.floor(diffDays / 365)} years ago`;
-};
-
-export const formatSalary = (salary: Job['salary']): string => {
-  if (!salary) return 'Salary not disclosed';
-
-  const { min, max, currency } = salary;
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: currency || 'USD',
-    maximumFractionDigits: 0,
-  });
-
-  if (min && max) {
-    return `${formatter.format(min)} - ${formatter.format(max)}`;
-  } else if (min) {
-    return `From ${formatter.format(min)}`;
-  } else if (max) {
-    return `Up to ${formatter.format(max)}`;
-  }
-
-  return 'Salary not disclosed';
 };
 
 export const debounce = <T extends (...args: any[]) => any>(

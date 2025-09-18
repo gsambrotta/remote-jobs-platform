@@ -1,6 +1,9 @@
 export * from './jobs.types';
 export * from './api.types';
 
+
+import type { Job, Filters } from './jobs.types';
+
 // Component Props Types
 export interface SearchBarProps {
   value: string;

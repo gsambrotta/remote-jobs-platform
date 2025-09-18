@@ -1,8 +1,7 @@
 import type { ApiResponse, SearchParams } from '../types/api.types';
-import type { Job, FilterOptions } from '../types/jobs.types';
+import type { Job } from '../types/jobs.types';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
 class ApiError extends Error {
   constructor(message: string, public status?: number) {
     super(message);

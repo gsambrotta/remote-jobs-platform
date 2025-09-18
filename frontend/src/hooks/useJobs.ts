@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useDebounce } from './useDebounce';
 import { fetchJobs } from '@services/api';
-import type { Job, Filters } from '@types/jobs.types';
+import type { Job, Filters } from '../types/jobs.types';
 
 interface UseJobsReturn {
   jobs: Job[];

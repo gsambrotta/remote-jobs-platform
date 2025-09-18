@@ -34,7 +34,7 @@ else:
 
 @app.route('/')
 def home():
-    return "Hello, World!"
+    return "Nothing to see here."
 
 @app.route('/jobs', methods=['GET'])
 def get_jobs():
