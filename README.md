@@ -2,6 +2,9 @@
 
 This project is a simple job board that helps people from underrepresented regions (e.g., Africa, the Balkans, Asia, Latin America) find **100% remote jobs** that **do not require a work visa for Europe, USA, Switzerland, or other wealthy Western countries**.  
 
+You can visit the platform here: https://remote-jobs-platform-frontend.onrender.com
+
+Here is the introduction video for CS50 Final Project: https://youtu.be/gGza58kiD74
 ---
 
 ## Tech Stack
